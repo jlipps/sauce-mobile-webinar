@@ -1,6 +1,7 @@
 import os
-from selenium import webdriver
 import unittest
+from selenium import webdriver
+from random import randint
 
 
 class AppiumTestCase(unittest.TestCase):
@@ -42,9 +43,9 @@ class CalculatorAppTestCase(AppiumTestCase):
             self.values.append(rand_num)
 
         # trigger computation by using the button
-        button = self.driver.find_element_by_name("Find Sum")
+        button = self.driver.find_element_by_name("ComputeSumButton")
         button.click()
 
         # test validity of result
-        result = self.driver.find_element_by_tag_name("staticText")
+        result = self.driver.find_element_by_xpath("//text[1]")
         self.assertEqual(int(result.text), sum(self.values))
